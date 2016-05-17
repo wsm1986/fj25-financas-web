@@ -21,11 +21,13 @@
       <artifactId>hibernate-envers</artifactId>
       <version>4.3.5.Final</version>
     </dependency>
-    <dependency>
-      <groupId>org.jipijapa</groupId>
-      <artifactId>jipijapa-hibernate4-3</artifactId>
-      <version>1.0.1.Final</version>
-    </dependency>
+
+<dependency>
+    <groupId>org.wildfly</groupId>
+    <artifactId>jipijapa-hibernate4-3</artifactId>
+    <version>10.0.0.Alpha4</version>
+</dependency>
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
