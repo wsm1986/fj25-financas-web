@@ -1,25 +1,34 @@
-<persistence version="2.1" 
-	xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
+	<!-- unidade de persistencia com o nome controlefinancas -->
 	<persistence-unit name="controlefinancas">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
-		<jta-data-source>java:/fj25DS</jta-data-source>
-
-		<class>br.com.caelum.financas.modelo.Conta</class>
-		<class>br.com.caelum.financas.modelo.Movimentacao</class>
+		<!-- Implementacao do JPA2, no nosso caso Hibernate -->
 
 		<properties>
+			<!-- Propriedades JDBC -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-iron-east-04.cleardb.net/heroku_ecf05cc386d04ca" />
+			<property name="javax.persistence.jdbc.user" value="b3fdb544f2233b" />
+			<property name="javax.persistence.jdbc.password" value="e66a482d0bee793" />
+			<!-- Configuracoes especificas do Hibernate -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
-			
+
 			<!-- poderia ser: update, create, create-drop, none -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="updade" />
 		</properties>
 	</persistence-unit>
+	<!--<persistence-unit name="controlefinancas"> <provider>org.hibernate.ejb.HibernatePersistence</provider> 
+		<jta-data-source>java:/fj25DS</jta-data-source> <class>br.com.caelum.financas.modelo.Conta</class> 
+		<class>br.com.caelum.financas.modelo.Movimentacao</class> <properties> <property 
+		name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" 
+		/> <property name="hibernate.show_sql" value="true" /> <property name="hibernate.format_sql" 
+		value="false" /> <property name="hibernate.hbm2ddl.auto" value="update" /> 
+		</properties> </persistence-unit> -->
 
 </persistence>
