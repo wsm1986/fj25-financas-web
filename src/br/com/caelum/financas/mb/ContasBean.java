@@ -13,8 +13,8 @@ import br.com.caelum.financas.modelo.Conta;
 @Named
 @SessionScoped
 public class ContasBean implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
 
 	private Conta conta = new Conta();
 	private List<Conta> contas = null;
@@ -30,12 +30,16 @@ public class ContasBean implements Serializable {
 	}
 
 	public void grava() {
-		contaDao.adiciona(conta);
+		if (conta.getId() == null) {
+			contaDao.adiciona(conta);
+		} else {
+			contaDao.alterar(conta);
+		}
 		limpaFormularioDoJSF();
 	}
 
 	public List<Conta> getContas() {
-		if(this.contas == null){
+		if (this.contas == null) {
 			this.contas = contaDao.lista();
 		}
 		return contas;
