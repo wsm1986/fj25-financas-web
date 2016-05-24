@@ -9,7 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+<<<<<<< HEAD
 import br.com.caelum.financas.modelo.Conta;
+=======
+import br.com.caelum.financas.exception.ValorInvalidoException;
+>>>>>>> 69d67f5a47c614d03931c5e02431a57812de0123
 import br.com.caelum.financas.modelo.Movimentacao;
 import br.com.caelum.financas.modelo.TipoMovimentacao;
 
@@ -21,6 +25,9 @@ public class MovimentacaoDao {
 
 	public void adiciona(Movimentacao movimentacao) {
 		this.manager.persist(movimentacao);
+		if (movimentacao.getValor().compareTo(BigDecimal.ZERO) < 0) {
+			throw new ValorInvalidoException("Movimentacao Negativa");
+		}
 	}
 
 	public Movimentacao busca(Integer id) {
