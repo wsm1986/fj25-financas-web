@@ -2,6 +2,7 @@ package br.com.caelum.financas.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class Movimentacao implements Serializable {
 	private Conta conta;
 	
 	@ManyToMany
-	private List<Categoria> categorias;
+	private List<Categoria> categorias = new ArrayList<Categoria>();
 	
 	@Enumerated(EnumType.STRING)
 	private TipoMovimentacao tipoMovimentacao;
