@@ -53,6 +53,7 @@ public class MovimentacoesBean implements Serializable {
 
 	public List<Movimentacao> getMovimentacoes() {
 		if (movimentacoes == null) {
+			// movimentacoes = movimentacaoDao.listaComCategorias(); Caso Lazy
 			movimentacoes = movimentacaoDao.lista();
 		}
 		return movimentacoes;
@@ -91,6 +92,7 @@ public class MovimentacoesBean implements Serializable {
 	 */
 	private void limpaFormularioDoJSF() {
 		this.movimentacao = new Movimentacao();
+		movimentacoes = movimentacaoDao.lista();
 	}
 
 	public TipoMovimentacao[] getTiposDeMovimentacao() {
@@ -109,7 +111,7 @@ public class MovimentacoesBean implements Serializable {
 	}
 
 	public List<Categoria> getCategorias() {
-		if(categorias == null){
+		if (categorias == null) {
 			System.out.println("Listando Categorias");
 			this.categorias = categoriaDao.lista();
 		}

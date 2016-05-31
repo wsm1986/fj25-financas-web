@@ -66,7 +66,7 @@
 	        <h2><h:outputText value="Todas as Movimentações" /></h2>
 	        <hr />
 	       <h:form>
-	        <h:dataTable value="#{movimentacoesBean.movimentacoes}" var="movimentacao">
+	        <h:dataTable value="#{movimentacoesBean.movimentacoes}" var="movimentacao" border="1">
 	        	<h:column>
 	        		<f:facet name="header">
 	        			<h:outputText value="ID" />
@@ -108,7 +108,7 @@
 	        		</f:facet>
 	        		#{movimentacao.tipoMovimentacao}
 	        	</h:column>
-	        	<h:column rendered="false">
+	        	<h:column rendered="true">
 	        		<f:facet name="header">
 	        			<h:outputText value="Categorias" />
 	        		</f:facet>        		
