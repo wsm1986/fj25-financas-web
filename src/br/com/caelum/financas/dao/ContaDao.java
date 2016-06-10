@@ -9,17 +9,17 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import br.com.caelum.financas.modelo.Conta;
 
-@TransactionManagement(TransactionManagementType.BEAN)
 @Stateless
 public class ContaDao {
 
-	@Resource
-	private UserTransaction ut;
+	// @Resource
+	// private UserTransaction ut;
 
 	@PersistenceContext
 	EntityManager manager;
@@ -27,26 +27,7 @@ public class ContaDao {
 	// Obriga a ter uma transação aberta
 	// @TransactionAttribute(TransactionAttributeType.MANDATORY)
 	public void adiciona(Conta conta) {
-		try {
-			this.ut.begin();
-
-		} catch (Exception e) {
-			throw new EJBException(e);
-		}
-
 		this.manager.persist(conta);
-		try {
-			this.ut.commit();
-		} catch (Exception e) {
-			try {
-				this.ut.rollback();
-			} catch (Exception ex) {
-				throw new EJBException(ex);
-			}
-			throw new EJBException(e);
-		}finally {
-			
-		}
 	}
 
 	public Conta busca(Integer id) {
@@ -64,5 +45,13 @@ public class ContaDao {
 
 	public void alterar(Conta conta) {
 		this.manager.merge(conta);
+	}
+
+	public int TrocarNomeDoBancoEmLote(String nomeAntigo, String nomeNovo) {
+		String jpql = "UPDATE Conta c Set c.banco =:nomeNovo where c.banco =:nomeAntigo";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("nomeNovo", nomeNovo);
+		query.setParameter("nomeAntigo", nomeAntigo);
+		return query.executeUpdate();
 	}
 }

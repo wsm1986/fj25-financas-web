@@ -59,6 +59,7 @@ public class MovimentacaoDao {
 		Query query = manager.createQuery(jpql);
 		query.setParameter("valor", valor);
 		query.setParameter("tipo", tipoMovimentacao);
+		query.setHint("org.hibernate.cahceable", true);
 		return query.getResultList();
 	}
 

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -21,6 +22,9 @@ public class Conta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Version
+	private Integer versao;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -79,6 +83,14 @@ public class Conta implements Serializable {
 
 	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
 		this.movimentacoes = movimentacoes;
+	}
+
+	public Integer getVersao() {
+		return versao;
+	}
+
+	public void setVersao(Integer versao) {
+		this.versao = versao;
 	}
 
 }

@@ -18,6 +18,9 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.cache.use_second_level_cahce"
 				value="true" />
+			<property name="hibernate.cache.use_query_cahce"
+				value="true" />	
+			<property name="hibernate.generate_statistics" value="true"/>
 		</properties>
 	</persistence-unit>
 
