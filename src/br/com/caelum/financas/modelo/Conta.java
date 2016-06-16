@@ -5,36 +5,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotEmpty;
 
+import br.com.caelum.financas.validator.NumeroEAgencia;
+
+@NumeroEAgencia
 @Entity
 @Cacheable
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "agencia", "numero" }) })
 public class Conta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Version
 	private Integer versao;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotNull
 	private String titular;
 	private String agencia;
 	private String numero;
+	@Column(length = 20, nullable = false)
+	@Size(max = 3)
+	@NotEmpty
 	private String banco;
 
-	@Cache(usage=CacheConcurrencyStrategy.TRANSACTIONAL)
-	@OneToMany(mappedBy="conta", fetch = FetchType.EAGER)
+	@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+	@OneToMany(mappedBy = "conta", fetch = FetchType.EAGER)
 	private List<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 
 	public Integer getId() {

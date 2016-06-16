@@ -12,7 +12,7 @@
 		   
    		<ui:define name="corpo">
 	        <h:form>
-	        	<f:validateBean disabled="true">
+	        	<f:validateBean disabled="false">
 			        <h:panelGrid columns="3">
 			        	<h:outputText value="Id" rendered="#{contasBean.conta.id!=null}" />
 			        	<h:inputText id="id" value="#{contasBean.conta.id}" rendered="#{contasBean.conta.id!=null}" readonly="true"/>
